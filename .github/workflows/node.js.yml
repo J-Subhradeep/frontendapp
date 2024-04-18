@@ -5,26 +5,29 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
   workflow_dispatch:
 jobs:
   build:
-
-    runs-on: self-hosted
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    runs-on:
+      self-hosted
+      # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - run: |
-        cd test-react
-        ls -a
-        npm ci
-        npm run build
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: |
+          cd test-react
+          ls -a
+          npm ci
+          npm run build
+          npm install -g pm2
+          pm2 start "npm run dev" --name test-react
+          pm2 logs "myAppName"
     # - run: ls
     # - run: npm run build --if-present
     # - run: npm test
