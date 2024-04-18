@@ -23,6 +23,8 @@ jobs:
     - run: |
         cd test-react
         ls -a
+        npm ci
+        npm run build
     # - run: ls
     # - run: npm run build --if-present
     # - run: npm test
