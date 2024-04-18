@@ -20,7 +20,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: cd test-react
-    - run: ls
+    - run: |
+        cd test-react
+        ls -a
+    # - run: ls
     # - run: npm run build --if-present
     # - run: npm test
